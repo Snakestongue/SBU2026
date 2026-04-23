@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body style="padding:0px; margin: 0px;">
+        <header style="margin:0px !important; padding:20px !important; background-color: black; color:white;">
+            <p>AI IT Helper</p>
+        </header>
+        <!-- <select id="selectTone">
+            <option>Funny</option>
+            <option>Serious</option>
+            <option>Formal</option>
+            <option>Optismitic</option>
+        </select>
+        <select id="selectPlatform">
+            <option>Instagram</option>
+            <option>TikTok</option>
+            <option>SnapChat</option>
+            <option>LinkedIn</option>
+        </select> -->
+        <div id-="overall" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <textarea style="width:500px; height:500px; margin: 10px;"id="textarea" placeholder="Enter issue!"></textarea>
+            <button id="click">Submit</button>
+        </div>
+        <!-- teamwork, continuation, protection -->
+        
+        <script>
+            let textarea = document.getElementById("textarea")
+            let hi = document.getElementById("hi")
+            let button = document.getElementById("click")
+            button.addEventListener("click", async function (){
+                let text = textarea.value;
+   
+                if (!text) {
+                    alert("Fill out fields!");
+                    return;
+                }
+                try {
+                    console.log("run1")
+                    let response = await fetch("/SMPG/generate/", {
+                        
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            content: text,
+                            
+                        })
+                    })
+                    console.log("Run2")
+                    const data = await response.json()
+                    console.log(data)
+                    if (response.ok){
+                        textarea.value = data.result;
+                        console.log(data.result)
+                        textarea.value = data.result
+                    }else{
+                        alert(data.message)
+                        console.log(data.message)
+                    }
+                } catch (error) {
+                    console.log(error + "")
+                    return;
+                }
+            })
+        </script>
+    </body>
+</html>
