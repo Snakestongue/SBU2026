@@ -22,6 +22,7 @@ class ChatRequest(BaseModel):
     prompt: str
     stream: bool = False
 
+# <<<<<<< HEAD
 # def chat(user_message: str, stream: bool = False):
 #     print("Hello")
 #     messages = [
@@ -38,6 +39,9 @@ class ChatRequest(BaseModel):
 #         reply = response['message']['content']
 
 #     return reply
+
+
+# >>>>>>> 7bcb3d1aa04c617e85669632b04c457117262037
 def chat(history: list, user_message: str, stream: bool = False) -> tuple:
     history.append({"role": "user", "content": user_message})
 
@@ -85,4 +89,9 @@ def stop_model():
         return {"status": f"Stopped model: {MODEL}"}
     except subprocess.CalledProcessError as e:
         return {"error": e.stderr}
-    #uvicorn api:app --reload --port 8000
+# <<<<<<< HEAD
+#     #uvicorn api:app --reload --port 8000
+# =======
+
+
+# >>>>>>> 7bcb3d1aa04c617e85669632b04c457117262037
